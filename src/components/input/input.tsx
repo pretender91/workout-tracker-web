@@ -1,10 +1,13 @@
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string
+  className?: string
 }
 
 function Input(props: InputProps) {
   return (
-    <label className="text-xs flex flex-col justify-start items-start gap-1 max-w-xs">
+    <label
+      className={`text-xs flex flex-col justify-start items-start gap-1 max-w-xs ${props.className}`}
+    >
       {props.label}
       <input
         {...props}

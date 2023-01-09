@@ -1,0 +1,191 @@
+.body-map {
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body-map__container {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.body-map__body {
+  height: 800px;
+}
+
+.body-map__model {
+  color: #000;
+}
+
+.body-map__muscle {
+  color: #ebebeb;
+  transition: color 25ms ease-in-out;
+}
+
+.body-map__muscle:hover {
+  cursor: pointer;
+}
+
+#abdominals.active {
+  color: #507c35;
+}
+
+#obliques.active {
+  color: #997d1e;
+}
+
+#forearms.active {
+  color: #acc91e;
+}
+
+#biceps.active {
+  color: #f9f03f;
+}
+
+#shoulders.active {
+  color: #ee6012;
+}
+
+#traps.active {
+  color: #b71f1a;
+}
+
+#chest.active {
+  color: #ef817a;
+}
+
+#quads.active {
+  color: #398bce;
+}
+
+#calves.active {
+  color: #7e4797;
+}
+
+#hamstrings.active {
+  color: #6868af;
+}
+
+#lowerback.active {
+  color: #c4801c;
+}
+
+#glutes.active {
+  color: #6eaec1;
+}
+
+#lats.active {
+  color: #fdca0d;
+}
+
+#traps_middle.active {
+  color: #860d0d;
+}
+
+#triceps.active {
+  color: #a49b02;
+}
+
+@media (hover: hover) {
+  #abdominals:hover,
+  #abdominals.active {
+    color: #507c35;
+  }
+
+  #obliques:hover,
+  #obliques.active {
+    color: #997d1e;
+  }
+
+  #forearms:hover,
+  #forearms.active {
+    color: #acc91e;
+  }
+
+  #biceps:hover,
+  #biceps.active {
+    color: #f9f03f;
+  }
+
+  #shoulders:hover,
+  #shoulders.active {
+    color: #ee6012;
+  }
+
+  #traps:hover,
+  #traps.active {
+    color: #b71f1a;
+  }
+
+  #chest:hover,
+  #chest.active {
+    color: #ef817a;
+  }
+
+  #quads:hover,
+  #quads.active {
+    color: #398bce;
+  }
+
+  #calves:hover,
+  #calves.active {
+    color: #7e4797;
+  }
+
+  #hamstrings:hover,
+  #hamstrings.active {
+    color: #6868af;
+  }
+
+  #lowerback:hover,
+  #lowerback.active {
+    color: #c4801c;
+  }
+
+  #glutes:hover,
+  #glutes.active {
+    color: #6eaec1;
+  }
+
+  #lats:hover,
+  #lats.active {
+    color: #fdca0d;
+  }
+
+  #traps_middle:hover,
+  #traps_middle.active {
+    color: #860d0d;
+  }
+
+  #triceps:hover,
+  #triceps.active {
+    color: #a49b02;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .body-map__body {
+    height: 600px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .body-map__body {
+    height: 650px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .body-map__body {
+    height: 600px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .body-map__body {
+    height: 500px;
+  }
+}
