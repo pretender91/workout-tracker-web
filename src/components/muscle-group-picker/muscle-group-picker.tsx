@@ -11,7 +11,7 @@ function MuscleGroupPicker() {
     isDataItemActive,
   } = useMuscleGroup()
   return (
-    <div className="w-full p-4 max-w-7xl">
+    <div>
       <BodyDirectionSelect
         value={bodyDirection}
         onChange={handleBodyDirectionChange}
