@@ -1,21 +1,27 @@
+import { Select } from '@mantine/core'
+import { useMemo } from 'react'
 import { BodyDirection } from '../useMuscleGroup'
-
-//TODO implement select for body direction
 
 function BodyDirectionSelect(props: {
   value: BodyDirection
   onChange: (value: BodyDirection) => void
 }) {
+  const options = useMemo(
+    () =>
+      Object.values(BodyDirection).map((direction) => ({
+        value: direction,
+        label: direction,
+      })),
+    [],
+  )
   return (
-    <select
-      onChange={(e) => props.onChange(e.currentTarget.value as BodyDirection)}
-    >
-      {Object.values(BodyDirection).map((direction) => (
-        <option key={direction} value={direction}>
-          {direction}
-        </option>
-      ))}
-    </select>
+    <Select
+      label="Select body direction"
+      placeholder="Pick one"
+      data={options}
+      value={props.value}
+      onChange={props.onChange}
+    />
   )
 }
 
