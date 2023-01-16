@@ -1,11 +1,7 @@
-import MuscleGroupPicker from './components/muscle-group-picker/muscle-group-picker'
+import { Routes } from 'src/routes/routes'
 
 function App() {
-  return (
-    <div>
-      <MuscleGroupPicker />
-    </div>
-  )
+  return <Routes />
 }
 
 export default App
