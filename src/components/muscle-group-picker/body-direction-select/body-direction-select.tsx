@@ -1,18 +1,21 @@
-import Select from '../../select/select'
 import { BodyDirection } from '../useMuscleGroup'
+
+//TODO implement select for body direction
 
 function BodyDirectionSelect(props: {
   value: BodyDirection
   onChange: (value: BodyDirection) => void
 }) {
   return (
-    <Select
-      options={[
-        { value: BodyDirection.Front, name: 'Front' },
-        { value: BodyDirection.Back, name: 'Back' },
-      ]}
-      onChange={props.onChange}
-    />
+    <select
+      onChange={(e) => props.onChange(e.currentTarget.value as BodyDirection)}
+    >
+      {Object.values(BodyDirection).map((direction) => (
+        <option key={direction} value={direction}>
+          {direction}
+        </option>
+      ))}
+    </select>
   )
 }
 

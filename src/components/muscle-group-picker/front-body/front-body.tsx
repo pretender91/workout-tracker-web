@@ -10,7 +10,6 @@ function FrontBodyMuscles(props: {
   return (
     <div className={`body-map__body front`}>
       <svg
-        className="max-w-full"
         height="100%"
         viewBox="0 0 673 1200"
         fill="none"
