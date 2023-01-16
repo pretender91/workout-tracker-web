@@ -1,8 +1,7 @@
-import { MantineProvider, useMantineTheme } from '@mantine/core'
+import { MantineProvider } from '@mantine/core'
+import { Routes } from 'src/routes/routes'
 
 function App() {
-  const theme = useMantineTheme()
-
   return (
     <MantineProvider
       withGlobalStyles
@@ -11,7 +10,7 @@ function App() {
         colorScheme: 'light',
       }}
     >
-      <div>app</div>
+      <Routes />
     </MantineProvider>
   )
 }
