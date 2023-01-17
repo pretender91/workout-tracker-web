@@ -1,5 +1,8 @@
 import { useForm } from '@mantine/form'
 import { useRef } from 'react'
+import { useCreateSession } from 'src/api/use-create-session'
+import { useRouter } from 'src/router'
+import { useAuthStore } from 'src/stores/auth-store'
 import { passwordValidation, userNameValidation } from './validation'
 
 type FormValues = {
@@ -9,6 +12,11 @@ type FormValues = {
 
 function useLogin() {
   const hasSubmitted = useRef(false)
+
+  const router = useRouter()
+
+  const { executeMutation } = useCreateSession()
+  const auth = useAuthStore()
 
   const form = useForm<FormValues>({
     initialValues: {
@@ -23,12 +31,26 @@ function useLogin() {
     validateInputOnChange: true,
   })
 
+  async function handleLogin(values: { username: string; password: string }) {
+    const result = await executeMutation(values)
+
+    if (result.error) {
+      //TODO parse errors from server
+      form.setFieldError('username', 'Wrong credentials')
+      return
+    }
+    if (result.data) {
+      auth.login(result.data.createSession)
+      router.routes.main().push()
+    }
+
+    return
+  }
+
   function submit() {
     return () => {
       hasSubmitted.current = true
-      form.onSubmit((values) => {
-        console.log(values)
-      })()
+      form.onSubmit(handleLogin)()
     }
   }
 

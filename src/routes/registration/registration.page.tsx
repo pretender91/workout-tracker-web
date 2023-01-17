@@ -7,10 +7,13 @@ import {
   TextInput,
   Title,
 } from '@mantine/core'
+import { useUnauthRoute } from 'src/hooks/use-unauth-route'
 import { useRouter } from 'src/router'
 import useRegistration from './use-registration'
 
 export function RegistrationPage() {
+  useUnauthRoute()
+
   const router = useRouter()
   const { form, submit } = useRegistration()
 
@@ -51,7 +54,12 @@ export function RegistrationPage() {
             Register
           </Button>
           <Divider w={'100%'} my="xs" label="or" labelPosition="center" />
-          <Button component="a" {...router.routes.login().link} fullWidth>
+          <Button
+            variant="outline"
+            component="a"
+            {...router.routes.login().link}
+            fullWidth
+          >
             Login
           </Button>
         </Group>
