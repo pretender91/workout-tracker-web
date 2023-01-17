@@ -54,7 +54,12 @@ export function RegistrationPage() {
             Register
           </Button>
           <Divider w={'100%'} my="xs" label="or" labelPosition="center" />
-          <Button component="a" {...router.routes.login().link} fullWidth>
+          <Button
+            variant="outline"
+            component="a"
+            {...router.routes.login().link}
+            fullWidth
+          >
             Login
           </Button>
         </Group>

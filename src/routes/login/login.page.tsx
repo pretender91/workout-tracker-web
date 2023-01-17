@@ -55,6 +55,7 @@ export function LoginPage() {
           <Divider w={'100%'} my="xs" label="or" labelPosition="center" />
           <Button
             component="a"
+            variant="outline"
             {...router.routes.registration().link}
             fullWidth
           >
