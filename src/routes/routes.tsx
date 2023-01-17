@@ -2,6 +2,8 @@ import { useRoute, useRouter } from 'src/router'
 import { LoginPage } from 'src/routes/login/login.page'
 import { MainPage } from 'src/routes/main/main.page'
 import { RegistrationPage } from 'src/routes/registration/registration.page'
+import { SettingsPage } from 'src/routes/settings/settings.page'
+import { StatsPage } from 'src/routes/stats/stats.page'
 
 export function Routes() {
   const { RouteProvider } = useRouter()
@@ -19,6 +21,10 @@ function CurrentRoute() {
   switch (route.name) {
     case 'main':
       return <MainPage />
+    case 'stats':
+      return <StatsPage />
+    case 'settings':
+      return <SettingsPage />
     case 'login':
       return <LoginPage />
     case 'registration':
