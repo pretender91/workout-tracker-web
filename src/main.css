@@ -1,0 +1,17 @@
+html, body {
+    overscroll-behavior-y: none;
+    background-color: #f4f4f47d;
+}
+
+body {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom);
+    margin: 0;
+}
+
+
+:root {
+    --main-bg-color: #f4f4f47d;
+    --main-bg-color: #eeeded6e;
+    --side-padding: 0.5rem;
+    --border-radius: 8px;
+}

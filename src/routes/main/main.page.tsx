@@ -1,18 +1,13 @@
-import { useCurrentDateQuery } from 'src/api/use-current-date-query'
+import { AppShell } from 'src/components/app-shell/app-shell'
+import MuscleGroupPicker from 'src/components/muscle-group-picker/muscle-group-picker'
 import { useAuthRoute } from 'src/hooks/use-auth-route'
 
 export function MainPage() {
   useAuthRoute()
 
-  const currentDateQuery = useCurrentDateQuery()
-
-  if (currentDateQuery.fetching) {
-    return <div>Loading...</div>
-  }
-
-  if (currentDateQuery.error) {
-    return <div>Error: {currentDateQuery.error.message}</div>
-  }
-
-  return <div>Main Page. CurrentDate: {currentDateQuery.data?.currentDate}</div>
+  return (
+    <AppShell title={'Calendar'}>
+      <MuscleGroupPicker />
+    </AppShell>
+  )
 }
