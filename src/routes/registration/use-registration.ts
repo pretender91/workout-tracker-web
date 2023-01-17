@@ -43,10 +43,7 @@ function useRegistration() {
     }
 
     if (result.data) {
-      auth.login(
-        result.data.registerUser.session,
-        result.data.registerUser.user,
-      )
+      auth.login(result.data.registerUser.session)
 
       router.routes.main().push()
     }

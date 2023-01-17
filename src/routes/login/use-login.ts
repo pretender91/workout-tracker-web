@@ -40,8 +40,7 @@ function useLogin() {
       return
     }
     if (result.data) {
-      const { user, ...session } = result.data.createSession
-      auth.login(session, user)
+      auth.login(result.data.createSession)
       router.routes.main().push()
     }
 

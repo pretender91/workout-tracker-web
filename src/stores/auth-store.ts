@@ -1,13 +1,10 @@
-import { Session, User } from 'src/graphql-schema/graphql'
+import { Session } from 'src/graphql-schema/graphql'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-type SessionWithoutUser = Omit<Session, 'user'>
-
 type AuthStore = {
-  session?: SessionWithoutUser
-  user?: User
-  login: (session: SessionWithoutUser, user: User) => void
+  session?: Session
+  login: (session: Session) => void
   logout: () => void
 }
 
@@ -15,14 +12,12 @@ export const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
       session: undefined,
-      user: undefined,
-      login: (session: SessionWithoutUser, user: User) =>
-        set({ session, user }),
-      logout: () => set({ session: undefined, user: undefined }),
+      login: (session: Session) => set({ session }),
+      logout: () => set({ session: undefined }),
     }),
     {
       name: 'auth',
-      partialize: (state) => ({ session: state.session, user: state.user }),
+      partialize: (state) => ({ session: state.session }),
     },
   ),
 )
