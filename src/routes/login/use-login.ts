@@ -1,6 +1,6 @@
 import { useForm } from '@mantine/form'
 import { useRef } from 'react'
-import { useRegisterUser } from 'src/api/use-registration-mutation'
+import { useCreateSession } from 'src/api/use-create-session'
 import { useRouter } from 'src/router'
 import { useAuthStore } from 'src/stores/auth-store'
 import { passwordValidation, userNameValidation } from './validation'
@@ -10,11 +10,12 @@ type FormValues = {
   password: string
 }
 
-function useRegistration() {
+function useLogin() {
   const hasSubmitted = useRef(false)
+
   const router = useRouter()
 
-  const { executeMutation } = useRegisterUser()
+  const { executeMutation } = useCreateSession()
   const auth = useAuthStore()
 
   const form = useForm<FormValues>({
@@ -30,21 +31,16 @@ function useRegistration() {
     validateInputOnChange: true,
   })
 
-  async function handleRegistration(values: {
-    username: string
-    password: string
-  }) {
+  async function handleLogin(values: { username: string; password: string }) {
     const result = await executeMutation(values)
 
     if (result.error) {
       //TODO parse errors from server
-      form.setFieldError('username', 'Username already taken')
+      form.setFieldError('username', 'Wrong credentials')
       return
     }
-
     if (result.data) {
-      auth.login(result.data.registerUser.session)
-
+      auth.login(result.data.createSession)
       router.routes.main().push()
     }
 
@@ -54,7 +50,7 @@ function useRegistration() {
   function submit() {
     return () => {
       hasSubmitted.current = true
-      form.onSubmit(handleRegistration)()
+      form.onSubmit(handleLogin)()
     }
   }
 
@@ -64,4 +60,4 @@ function useRegistration() {
   }
 }
 
-export default useRegistration
+export default useLogin
