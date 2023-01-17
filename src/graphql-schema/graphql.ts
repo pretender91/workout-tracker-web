@@ -105,10 +105,19 @@ export type UserSessionsArgs = {
 
 export type Viewer = Guest | User;
 
+export type RegistrationMutationMutationVariables = Exact<{
+  username: Scalars['Username'];
+  password: Scalars['Password'];
+}>;
+
+
+export type RegistrationMutationMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', id: string, username: string } };
+
 export type CurrentDateQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CurrentDateQueryQuery = { __typename?: 'Query', currentDate: string };
 
 
+export const RegistrationMutationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RegistrationMutation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Username"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Password"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<RegistrationMutationMutation, RegistrationMutationMutationVariables>;
 export const CurrentDateQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CurrentDateQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currentDate"}}]}}]} as unknown as DocumentNode<CurrentDateQueryQuery, CurrentDateQueryQueryVariables>;

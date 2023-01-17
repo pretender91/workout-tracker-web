@@ -1,5 +1,7 @@
 import { useForm } from '@mantine/form'
 import { useRef } from 'react'
+import { useCreateUserMutation } from 'src/api/use-create-user-mutation'
+import { useRouter } from 'src/router'
 import { passwordValidation, userNameValidation } from './validation'
 
 type FormValues = {
@@ -9,6 +11,9 @@ type FormValues = {
 
 function useRegistration() {
   const hasSubmitted = useRef(false)
+  const router = useRouter()
+
+  const { executeMutation } = useCreateUserMutation()
 
   const form = useForm<FormValues>({
     initialValues: {
@@ -23,12 +28,26 @@ function useRegistration() {
     validateInputOnChange: true,
   })
 
+  async function handleRegistration(values: {
+    username: string
+    password: string
+  }) {
+    const result = await executeMutation(values)
+
+    if (result.error) {
+      //TODO parse errors from server
+      form.setFieldError('username', 'Username already taken')
+      return
+    }
+
+    router.routes.login().push()
+    return
+  }
+
   function submit() {
     return () => {
       hasSubmitted.current = true
-      form.onSubmit((values) => {
-        console.log(values)
-      })()
+      form.onSubmit(handleRegistration)()
     }
   }
 
