@@ -1,6 +1,9 @@
 import { useCurrentDateQuery } from 'src/api/use-current-date-query'
+import { useAuthRoute } from 'src/hooks/use-auth-route'
 
 export function MainPage() {
+  useAuthRoute()
+
   const currentDateQuery = useCurrentDateQuery()
 
   if (currentDateQuery.fetching) {

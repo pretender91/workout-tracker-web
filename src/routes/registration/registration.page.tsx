@@ -7,10 +7,13 @@ import {
   TextInput,
   Title,
 } from '@mantine/core'
+import { useUnauthRoute } from 'src/hooks/use-unauth-route'
 import { useRouter } from 'src/router'
 import useRegistration from './use-registration'
 
 export function RegistrationPage() {
+  useUnauthRoute()
+
   const router = useRouter()
   const { form, submit } = useRegistration()
 

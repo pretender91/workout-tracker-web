@@ -1,7 +1,8 @@
 import { useForm } from '@mantine/form'
 import { useRef } from 'react'
-import { useCreateUserMutation } from 'src/api/use-create-user-mutation'
+import { useRegisterUser } from 'src/api/use-registration-mutation'
 import { useRouter } from 'src/router'
+import { useAuthStore } from 'src/stores/auth-store'
 import { passwordValidation, userNameValidation } from './validation'
 
 type FormValues = {
@@ -13,7 +14,8 @@ function useRegistration() {
   const hasSubmitted = useRef(false)
   const router = useRouter()
 
-  const { executeMutation } = useCreateUserMutation()
+  const { executeMutation } = useRegisterUser()
+  const auth = useAuthStore()
 
   const form = useForm<FormValues>({
     initialValues: {
@@ -40,7 +42,15 @@ function useRegistration() {
       return
     }
 
-    router.routes.login().push()
+    if (result.data) {
+      auth.login(
+        result.data.registerUser.session,
+        result.data.registerUser.user,
+      )
+
+      router.routes.main().push()
+    }
+
     return
   }
 

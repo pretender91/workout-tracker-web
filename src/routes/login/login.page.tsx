@@ -7,10 +7,13 @@ import {
   TextInput,
   Title,
 } from '@mantine/core'
+import { useUnauthRoute } from 'src/hooks/use-unauth-route'
 import { useRouter } from 'src/router'
 import useLogin from './use-login'
 
 export function LoginPage() {
+  useUnauthRoute()
+
   const router = useRouter()
   const { form, submit } = useLogin()
 
