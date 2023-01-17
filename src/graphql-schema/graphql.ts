@@ -34,6 +34,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   createSession: Session;
   createUser: User;
+  registerUser: RegisterUserResult;
 };
 
 
@@ -44,6 +45,12 @@ export type MutationCreateSessionArgs = {
 
 
 export type MutationCreateUserArgs = {
+  password: Scalars['Password'];
+  username: Scalars['Username'];
+};
+
+
+export type MutationRegisterUserArgs = {
   password: Scalars['Password'];
   username: Scalars['Username'];
 };
@@ -66,11 +73,18 @@ export type Query = {
   viewer: Viewer;
 };
 
+export type RegisterUserResult = {
+  __typename?: 'RegisterUserResult';
+  session: Session;
+  user: User;
+};
+
 export type Session = Node & {
   __typename?: 'Session';
   createdAt: Scalars['Date'];
   id: Scalars['Id'];
   token: Scalars['Token'];
+  user: User;
   userId: Scalars['Id'];
 };
 
