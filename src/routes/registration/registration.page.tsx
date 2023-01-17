@@ -35,6 +35,7 @@ export function RegistrationPage() {
       }}
     >
       <Card
+        shadow={'sm'}
         style={{
           display: 'flex',
           justifyContent: 'center',

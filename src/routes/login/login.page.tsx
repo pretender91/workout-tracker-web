@@ -35,6 +35,7 @@ export function LoginPage() {
       }}
     >
       <Card
+        shadow={'sm'}
         style={{
           display: 'flex',
           justifyContent: 'center',
