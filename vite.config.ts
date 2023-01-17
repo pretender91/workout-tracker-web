@@ -9,4 +9,12 @@ export default defineConfig({
       src: '/src',
     },
   },
+  server: {
+    proxy: {
+      '/graphql': {
+        target: 'http://localhost:4000',
+        changeOrigin: true,
+      },
+    },
+  },
 })
