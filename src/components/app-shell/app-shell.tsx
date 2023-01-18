@@ -17,6 +17,7 @@ export function AppShell(props: {
   children: ReactNode
   title: string
   leftSlot?: ReactNode
+  rightSlot?: ReactNode
 }) {
   const currentRoute = useRoute()
 

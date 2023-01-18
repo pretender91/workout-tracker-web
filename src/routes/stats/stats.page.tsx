@@ -7,8 +7,8 @@ import { useRouter } from 'src/router'
 
 export function StatsPage() {
   useAuthRoute()
-
   const router = useRouter()
+
   const { showBreadcrumbs, handleHideBreadcrumbs, handleShowBreadcrumbs } =
     useBreadCrumbs()
 
