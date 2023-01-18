@@ -2,7 +2,7 @@ import { Text, Title } from '@mantine/core'
 import { IconCalendar, IconGraph, IconSettings } from '@tabler/icons'
 import { ReactNode } from 'react'
 import styles from 'src/components/app-shell/app-shell.module.css'
-import { AppRoute, useRoute, router, AppRouteNames } from 'src/router'
+import { AppRoute, AppRouteNames, router, useRoute } from 'src/router'
 
 /**
  * TODO: Add selected colors for nested routes
@@ -13,7 +13,11 @@ function getColor(routeName: AppRouteNames, currentRoute: AppRoute) {
   return routeName === currentRoute.name ? SELECTED_COLOR : DEFAULT_COLOR
 }
 
-export function AppShell(props: { children: ReactNode; title: string }) {
+export function AppShell(props: {
+  children: ReactNode
+  title: string
+  leftSlot?: ReactNode
+}) {
   const currentRoute = useRoute()
 
   const calendarColor = getColor('main', currentRoute)
@@ -23,8 +27,8 @@ export function AppShell(props: { children: ReactNode; title: string }) {
   return (
     <div className={styles.appShell}>
       <header className={styles.appHeader}>
-        <div className={styles.appHeaderLeftSlot}>left slot</div>
-        <Title order={1} size={'h7'}>
+        <div className={styles.appHeaderLeftSlot}>{props.leftSlot}</div>
+        <Title order={1} size={'h7'} align="center">
           {props.title}
         </Title>
         <div className={styles.appHeaderRightSlot}> right slot</div>
