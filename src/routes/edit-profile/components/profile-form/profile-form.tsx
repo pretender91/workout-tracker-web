@@ -7,22 +7,14 @@ import {
   TextInput,
   Transition,
 } from '@mantine/core'
-import { useEffect, useState } from 'react'
+import useMounted from 'src/hooks/use-mounted'
 import { useRouter } from 'src/router'
 import { useProfileForm } from './use-profile-form'
 
 export function ProfileForm() {
-  const [mounted, setMounted] = useState(false)
   const { imagePreview, form, handleChangeAvatar, submit } = useProfileForm()
   const router = useRouter()
-
-  useEffect(() => {
-    setMounted(true)
-
-    return () => {
-      setMounted(false)
-    }
-  }, [])
+  const mounted = useMounted()
 
   function onSubmit(event: React.FormEvent) {
     event.preventDefault()
