@@ -4,6 +4,7 @@ import { MainPage } from 'src/routes/main/main.page'
 import { RegistrationPage } from 'src/routes/registration/registration.page'
 import { SettingsPage } from 'src/routes/settings/settings.page'
 import { StatsPage } from 'src/routes/stats/stats.page'
+import ProfilePage from './edit-profile/edit-profile.page'
 
 export function Routes() {
   const { RouteProvider } = useRouter()
@@ -25,6 +26,8 @@ function CurrentRoute() {
       return <StatsPage />
     case 'settings':
       return <SettingsPage />
+    case 'profile':
+      return <ProfilePage />
     case 'login':
       return <LoginPage />
     case 'registration':
