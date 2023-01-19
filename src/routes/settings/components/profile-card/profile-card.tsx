@@ -1,12 +1,14 @@
-import { Avatar, Card, Flex, Text } from '@mantine/core'
+import { Anchor, Avatar, Card, Flex, Text } from '@mantine/core'
 import { IconPencil } from '@tabler/icons'
+import { useRouter } from 'src/router'
 import { useAuthStore } from 'src/stores/auth-store'
 
 function ProfileCard(props: { onClick?: () => void }) {
   const user = useAuthStore((state) => state.session?.user)
+  const router = useRouter()
 
   return (
-    <Card>
+    <Card onClick={props.onClick}>
       <Flex justify={'space-between'} align="center">
         <Flex gap={15} align="center">
           <Avatar variant="filled" radius={'xl'} size="lg">
@@ -14,7 +16,10 @@ function ProfileCard(props: { onClick?: () => void }) {
           </Avatar>
           <Text>{user?.username}</Text>
         </Flex>
-        {props.onClick && <IconPencil onClick={props.onClick} />}
+
+        <Anchor {...router.routes.profile().link}>
+          <IconPencil onClick={props.onClick} />
+        </Anchor>
       </Flex>
     </Card>
   )

@@ -4,7 +4,7 @@ import { registrationRoute } from 'src/routes/registration/registration.route'
 import { settingsRoute } from 'src/routes/settings/settings.route'
 import { statsRoute } from 'src/routes/stats/stats.route'
 import { createRouter, Route } from 'type-route'
-import { profileRoute } from './routes/profile/profile.route'
+import { profileRoute } from './routes/edit-profile/edit-profile.route'
 
 export const router = createRouter({
   main: mainRoute,
