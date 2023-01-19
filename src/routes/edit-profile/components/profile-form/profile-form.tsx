@@ -5,7 +5,6 @@ import {
   FileButton,
   Flex,
   TextInput,
-  Title,
   Transition,
 } from '@mantine/core'
 import { useEffect, useState } from 'react'
@@ -36,8 +35,6 @@ export function ProfileForm() {
         <Card style={styles}>
           <form onSubmit={onSubmit}>
             <Flex direction={'column'} gap={20}>
-              <Title order={6}>General</Title>
-
               <FileButton
                 onChange={handleChangeAvatar}
                 accept="image/png,image/jpeg"
