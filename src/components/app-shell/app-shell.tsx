@@ -29,7 +29,7 @@ export function AppShell(props: {
     <div className={styles.appShell}>
       <header className={styles.appHeader}>
         <div className={styles.appHeaderLeftSlot}>{props.leftSlot}</div>
-        <Title order={1} size={'h7'}>
+        <Title order={1} size={'h7'} align="center">
           {props.title}
         </Title>
         <div className={styles.appHeaderRightSlot}> right slot</div>

@@ -1,63 +1,66 @@
 .appShell {
-    height: 100svh;
+  height: 100svh;
 
-    background-color: var(--main-bg-color);
+  background-color: var(--main-bg-color);
 
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
     'header'
     'content'
     'footer';
 }
 
 .appContent {
-    grid-area: content;
-    padding: 50px var(--side-padding) 50px;
-    overflow: auto;
-    z-index: 1;
+  grid-area: content;
+  padding: 50px var(--side-padding) 50px;
+  overflow: auto;
+  z-index: 1;
 }
 
 .appHeader {
-    grid-area: header;
-    padding: 0 var(--side-padding);
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    background: var(--main-bg-color);
-    box-shadow: inset 0 -0.5px 0 rgba(0, 0, 0, 0.2);
-    z-index: 2;
+  grid-area: header;
+  padding: 0 var(--side-padding);
+  width: 100%;
+  height: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(50px, 1fr));
+  align-items: center;
+  background: var(--main-bg-color);
+  box-shadow: inset 0 -0.5px 0 rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.appHeaderRightSlot {
+  justify-self: flex-end;
 }
 
 .appNavigation {
-    grid-area: footer;
-    height: 75px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    background: var(--main-bg-color);
-    box-shadow: 0 -0.5px 0 rgba(0, 0, 0, 0.2);
-    z-index: 2;
+  grid-area: footer;
+  height: 75px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background: var(--main-bg-color);
+  box-shadow: 0 -0.5px 0 rgba(0, 0, 0, 0.2);
+  z-index: 2;
 }
 
 .appNavigation > ul {
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    gap: 65px;
-    align-items: center;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 65px;
+  align-items: center;
 }
 
 .appNavigation > ul > li > a {
-    all: unset;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    user-select: none;
-    cursor: pointer;
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
 }
