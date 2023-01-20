@@ -12,10 +12,10 @@ function ProfileCard(props: { onClick?: () => void }) {
         align="center"
         gap={10}
       >
-        <Avatar variant="filled" radius={'xl'} size="lg">
-          {user?.username[0]}
+        <Avatar variant="filled" h={100} w={100} radius={50}>
+          <Text size={48}>{user?.username[0]}</Text>
         </Avatar>
-        <Text>{user?.username}</Text>
+        <Text size={24}>{user?.username}</Text>
       </Flex>
     </Card>
   )
