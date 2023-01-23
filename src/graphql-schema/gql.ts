@@ -15,6 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n  mutation CreateSession($username: Username!, $password: Password!) {\n    createSession(username: $username, password: $password) {\n      __typename\n      id\n      token\n      createdAt\n      userId\n      user {\n        __typename\n        id\n        username\n        createdAt\n      }\n    }\n  }\n": types.CreateSessionDocument,
     "\n  query CurrentDateQuery {\n    currentDate\n  }\n": types.CurrentDateQueryDocument,
+    "\n  mutation RemoveCurrentSession {\n    removeCurrentSession\n  }\n": types.RemoveCurrentSessionDocument,
     "\n  mutation RegisterUser($username: Username!, $password: Password!) {\n    registerUser(password: $password, username: $username) {\n      session {\n        __typename\n        id\n        token\n        createdAt\n        userId\n        user {\n          __typename\n          id\n          username\n          createdAt\n        }\n      }\n    }\n  }\n": types.RegisterUserDocument,
 };
 
@@ -40,6 +41,10 @@ export function graphql(source: "\n  mutation CreateSession($username: Username!
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query CurrentDateQuery {\n    currentDate\n  }\n"): (typeof documents)["\n  query CurrentDateQuery {\n    currentDate\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation RemoveCurrentSession {\n    removeCurrentSession\n  }\n"): (typeof documents)["\n  mutation RemoveCurrentSession {\n    removeCurrentSession\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
