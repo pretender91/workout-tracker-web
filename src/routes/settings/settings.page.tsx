@@ -1,6 +1,7 @@
-import { Button, Flex } from '@mantine/core'
+import { Flex } from '@mantine/core'
 import { AppShell } from 'src/components/app-shell/app-shell'
 import { useAuthRoute } from 'src/hooks/use-auth-route'
+import LogoutButton from './components/logout-button/logout-button'
 import ProfileCard from './components/profile-card/profile-card'
 
 export function SettingsPage() {
@@ -11,16 +12,7 @@ export function SettingsPage() {
       <Flex direction={'column'} justify="space-between" h={'100%'}>
         <ProfileCard />
 
-        <Button
-          color={'red'}
-          variant={'outline'}
-          fullWidth
-          onClick={() => {
-            console.log('logout')
-          }}
-        >
-          Log out
-        </Button>
+        <LogoutButton />
       </Flex>
     </AppShell>
   )
