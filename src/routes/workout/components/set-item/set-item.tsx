@@ -67,7 +67,30 @@ export function SetItem(props: {
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
                             >
-                              <Title order={6}>Set {index + 1}</Title>
+                              <Flex
+                                {...provided.dragHandleProps}
+                                justify="space-between"
+                                align="center"
+                                style={{
+                                  marginTop: '10px',
+                                }}
+                              >
+                                <Title order={6}>Set {index + 1}</Title>
+                                <ActionIcon
+                                  disabled={
+                                    index === 0 && form.values.data.length <= 1
+                                  }
+                                  onClick={() => removeSetItem(index)}
+                                  color="red"
+                                  style={{
+                                    alignSelf: 'flex-end',
+                                    backgroundColor: 'transparent',
+                                    borderColor: 'transparent',
+                                  }}
+                                >
+                                  <IconX size={20} />
+                                </ActionIcon>
+                              </Flex>
                               <Flex
                                 gap={10}
                                 justify="space-between"
@@ -92,23 +115,6 @@ export function SetItem(props: {
                                     maxWidth: '135px',
                                   }}
                                 />
-
-                                <ActionIcon
-                                  disabled={
-                                    index === 0 && form.values.data.length <= 1
-                                  }
-                                  onClick={() => removeSetItem(index)}
-                                  color="red"
-                                  size={36}
-                                  style={{
-                                    alignSelf: 'flex-end',
-                                    backgroundColor: 'transparent',
-                                    borderColor: 'transparent',
-                                    marginRight: '-11px',
-                                  }}
-                                >
-                                  <IconX size={20} />
-                                </ActionIcon>
                               </Flex>
                             </Flex>
                           )}
@@ -116,7 +122,13 @@ export function SetItem(props: {
                       )
                     })}
                     {provided.placeholder}
-                    <Flex direction="column" gap={20}>
+                    <Flex
+                      direction="column"
+                      gap={20}
+                      style={{
+                        marginTop: '20px',
+                      }}
+                    >
                       <ActionIcon onClick={addReps}>
                         <IconCirclePlus size={36} color="#228be6" />
                       </ActionIcon>
