@@ -5,6 +5,7 @@ import { settingsRoute } from 'src/routes/settings/settings.route'
 import { statsRoute } from 'src/routes/stats/stats.route'
 import { createRouter, Route } from 'type-route'
 import { profileRoute } from './routes/edit-profile/edit-profile.route'
+import { workoutRoute } from './routes/workout/workout.route'
 
 export const router = createRouter({
   main: mainRoute,
@@ -13,6 +14,7 @@ export const router = createRouter({
   login: loginRoute,
   registration: registrationRoute,
   profile: profileRoute,
+  workout: workoutRoute,
 })
 
 export type AppRoute = Route<typeof router.routes>
