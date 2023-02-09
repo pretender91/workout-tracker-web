@@ -40,7 +40,7 @@ export function SupersetItem(props: {
               if (!destination) {
                 return
               }
-              form.reorderListItem('data', {
+              form.reorderListItem('items', {
                 from: source.index,
                 to: destination.index,
               })
