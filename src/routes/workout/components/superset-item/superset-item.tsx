@@ -37,7 +37,7 @@ export function SupersetItem(props: {
 
   return (
     <>
-      <Title order={5} onClick={openDrawer} style={{ width: '100%' }}>
+      <Title order={5} truncate onClick={openDrawer} style={{ width: '100%' }}>
         {formattedName}
       </Title>
 
@@ -52,10 +52,18 @@ export function SupersetItem(props: {
           drawer: {
             overflow: 'scroll',
           },
+
+          title: {
+            width: '85%',
+          },
         })}
         opened={isDrawerOpened}
         onClose={closeDrawer}
-        title={<Title order={3}>{formattedName}</Title>}
+        title={
+          <Title order={4} truncate={true}>
+            {formattedName}
+          </Title>
+        }
         position="right"
         size="95%"
       >

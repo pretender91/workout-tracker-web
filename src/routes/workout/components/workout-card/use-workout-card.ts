@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid'
 import { useState } from 'react'
+import { DropResult } from 'react-beautiful-dnd'
 
 export type Exercise = {
   id: string
@@ -13,12 +14,42 @@ export type ExerciseBlock = {
   exercises: Exercise[]
 }
 
+const reorderItems = (
+  list: ExerciseBlock[],
+  startIndex: number,
+  endIndex: number,
+) => {
+  const result = Array.from(list)
+  const [removed] = result.splice(startIndex, 1)
+  result.splice(endIndex, 0, removed)
+
+  return result
+}
+
 export function useWorkoutCard() {
   const [exerciseBlocks, setExerciseBlocks] = useState<ExerciseBlock[]>([])
 
   const [blockId, setBlockId] = useState<string | undefined>(undefined)
 
   const [isExerciseDrawerOpened, setIsExerciseDrawerOpened] = useState(false)
+
+  function onDragEnd(result: DropResult) {
+    if (!result.destination) {
+      return
+    }
+
+    if (result.destination.index === result.source.index) {
+      return
+    }
+
+    const reorderedExerciseBlock = reorderItems(
+      exerciseBlocks,
+      result.source.index,
+      result.destination.index,
+    )
+
+    setExerciseBlocks(reorderedExerciseBlock)
+  }
 
   function openExerciseDrawer(id?: string) {
     setIsExerciseDrawerOpened(true)
@@ -93,6 +124,7 @@ export function useWorkoutCard() {
     removeWorkoutBlock,
     updateExercise,
     updatedExercises,
+    onDragEnd,
     isExerciseDrawerOpened,
     blockId,
     exerciseBlocks,

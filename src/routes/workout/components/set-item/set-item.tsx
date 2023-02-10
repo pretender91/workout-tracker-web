@@ -51,6 +51,9 @@ export function SetItem(props: {
           drawer: {
             overflow: 'scroll',
           },
+          title: {
+            width: '85%',
+          },
         })}
         opened={isDrawerOpened}
         onClose={closeDrawer}
