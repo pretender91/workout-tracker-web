@@ -1,0 +1,33 @@
+.container {
+  height: 91svh;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    'content'
+    'footer';
+}
+
+.content {
+  grid-area: content;
+  overflow: auto;
+  z-index: 1;
+  align-items: center;
+  justify-items: center;
+  padding: 16px;
+}
+
+.navigation {
+  grid-area: footer;
+  gap: 10px;
+  height: 75px;
+  align-items: center;
+  padding: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background: var(--main-bg-color);
+  box-shadow: 0 -0.5px 0 rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}

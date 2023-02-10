@@ -1,21 +1,30 @@
 import {
-  Accordion,
   ActionIcon,
   Button,
+  Drawer,
   Flex,
   NumberInput,
   Title,
 } from '@mantine/core'
-import { IconCirclePlus, IconX } from '@tabler/icons'
+import { IconTrash } from '@tabler/icons'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { Exercise } from '../workout-card/use-workout-card'
+import styles from './set-item.module.css'
 import { useSetItem } from './use-set-item'
 
 export function SetItem(props: {
   item: Exercise
   onSubmit: (exercise: Exercise) => void
 }) {
-  const { form, addReps, removeSetItem, submit } = useSetItem({
+  const {
+    form,
+    isDrawerOpened,
+    openDrawer,
+    closeDrawer,
+    addReps,
+    removeSetItem,
+    submit,
+  } = useSetItem({
     item: props.item,
     onSubmit: props.onSubmit,
   })
@@ -24,31 +33,51 @@ export function SetItem(props: {
     event.preventDefault()
     submit()()
   }
+
   return (
-    <Accordion
-      chevron={null}
-      style={{ borderBottom: '0', outline: 'none', width: '100%' }}
-    >
-      <Accordion.Item value={props.item.id}>
-        <Accordion.Control>
-          <Title order={5}>{props.item.name}</Title>
-        </Accordion.Control>
-        <Accordion.Panel>
-          <DragDropContext
-            onDragEnd={({ destination, source }) => {
-              if (!destination) {
-                return
-              }
-              form.reorderListItem('data', {
-                from: source.index,
-                to: destination.index,
-              })
-            }}
-          >
-            <form onSubmit={onSubmit}>
-              <Droppable droppableId="dnd-list" direction="vertical">
-                {(provided) => (
-                  <div {...provided.droppableProps} ref={provided.innerRef}>
+    <>
+      <Title order={5} onClick={openDrawer} style={{ width: '100%' }}>
+        {props.item.name}
+      </Title>
+
+      <Drawer
+        styles={() => ({
+          root: {
+            padding: 0,
+          },
+          header: {
+            padding: 16,
+          },
+          drawer: {
+            overflow: 'scroll',
+          },
+        })}
+        opened={isDrawerOpened}
+        onClose={closeDrawer}
+        title={<Title order={3}>{props.item.name}</Title>}
+        position="right"
+        size="95%"
+      >
+        <DragDropContext
+          onDragEnd={({ destination, source }) => {
+            if (!destination) {
+              return
+            }
+            form.reorderListItem('data', {
+              from: source.index,
+              to: destination.index,
+            })
+          }}
+        >
+          <form onSubmit={onSubmit}>
+            <Droppable droppableId="dnd-list" direction="vertical">
+              {(provided) => (
+                <div
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  className={styles.setItem}
+                >
+                  <div className={styles.setContent}>
                     {form.values.data.map((_, index) => {
                       return (
                         <Draggable
@@ -88,7 +117,7 @@ export function SetItem(props: {
                                     borderColor: 'transparent',
                                   }}
                                 >
-                                  <IconX size={20} />
+                                  <IconTrash size={20} />
                                 </ActionIcon>
                               </Flex>
                               <Flex
@@ -97,9 +126,6 @@ export function SetItem(props: {
                                 align="center"
                               >
                                 <NumberInput
-                                  style={{
-                                    maxWidth: '135px',
-                                  }}
                                   size="xs"
                                   {...form.getInputProps(`data.${index}.reps`)}
                                   placeholder="Repetitions"
@@ -111,9 +137,6 @@ export function SetItem(props: {
                                   )}
                                   placeholder="Weight"
                                   icon="Kg"
-                                  style={{
-                                    maxWidth: '135px',
-                                  }}
                                 />
                               </Flex>
                             </Flex>
@@ -122,33 +145,27 @@ export function SetItem(props: {
                       )
                     })}
                     {provided.placeholder}
-                    <Flex
-                      direction="column"
-                      gap={20}
-                      style={{
-                        marginTop: '20px',
-                      }}
-                    >
-                      <ActionIcon onClick={addReps}>
-                        <IconCirclePlus size={36} color="#228be6" />
-                      </ActionIcon>
-
-                      <Button
-                        fullWidth
-                        color="green"
-                        variant="outline"
-                        type="submit"
-                      >
-                        Commit
-                      </Button>
-                    </Flex>
                   </div>
-                )}
-              </Droppable>
-            </form>
-          </DragDropContext>
-        </Accordion.Panel>
-      </Accordion.Item>
-    </Accordion>
+
+                  <div className={styles.setNavigation}>
+                    <Button fullWidth onClick={addReps} variant="outline">
+                      Add set
+                    </Button>
+                    <Button
+                      fullWidth
+                      color="green"
+                      variant="outline"
+                      type="submit"
+                    >
+                      Save
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </Droppable>
+          </form>
+        </DragDropContext>
+      </Drawer>
+    </>
   )
 }

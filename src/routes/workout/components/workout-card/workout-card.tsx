@@ -1,4 +1,5 @@
-import { Button, Card, Flex } from '@mantine/core'
+import { Button, Card, Flex, Title } from '@mantine/core'
+import { IconPlus } from '@tabler/icons'
 import { ExerciseDrawerForm } from '../exercise-drawer-form/exercise.drawer-form'
 import { SetItem } from '../set-item/set-item'
 import { SettingsBlock } from '../settings-block/settings-block'
@@ -19,9 +20,28 @@ export function WorkoutCard() {
   } = useWorkoutCard()
 
   return (
-    <Card>
-      <h1>Workout</h1>
-      <Flex direction="column" gap={20}>
+    <Card mih={'100%'}>
+      <Flex justify={'space-between'} align="center" mb={20}>
+        <Title>Workout</Title>
+
+        <Button
+          leftIcon={<IconPlus size={18} />}
+          variant="outline"
+          size="xs"
+          onClick={() => openExerciseDrawer()}
+          styles={{
+            leftIcon: {
+              marginRight: 2,
+            },
+          }}
+          style={{
+            marginTop: 5,
+          }}
+        >
+          exercise
+        </Button>
+      </Flex>
+      <Flex direction="column" gap={20} justify="space-between">
         {exerciseBlocks.map((block) => {
           return (
             <Flex
@@ -29,11 +49,13 @@ export function WorkoutCard() {
               align="center"
               style={{
                 width: '100%',
-                position: 'relative',
               }}
             >
               {block.exercises.length > 1 ? (
-                <SupersetItem items={block.exercises} onSubmit={() => {}} />
+                <SupersetItem
+                  items={block.exercises}
+                  onSubmit={updatedExercises}
+                />
               ) : (
                 <SetItem item={block.exercises[0]} onSubmit={updateExercise} />
               )}
@@ -45,10 +67,8 @@ export function WorkoutCard() {
             </Flex>
           )
         })}
-        <Button variant="outline" onClick={() => openExerciseDrawer()}>
-          Add exercise
-        </Button>
       </Flex>
+
       <ExerciseDrawerForm
         exerciseBlockId={blockId}
         isOpened={isExerciseDrawerOpened}

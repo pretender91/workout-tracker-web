@@ -1,5 +1,5 @@
 import { useForm } from '@mantine/form'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Exercise } from '../workout-card/use-workout-card'
 
 export function useSetItem({
@@ -9,6 +9,16 @@ export function useSetItem({
   item: Exercise
   onSubmit: (exercise: Exercise) => void
 }) {
+  const [isDrawerOpened, setIsDrawerOpened] = useState(false)
+
+  function openDrawer() {
+    setIsDrawerOpened(true)
+  }
+
+  function closeDrawer() {
+    setIsDrawerOpened(false)
+  }
+
   const form = useForm({
     initialValues: {
       ...item,
@@ -30,6 +40,7 @@ export function useSetItem({
   function submit() {
     return () => {
       form.onSubmit(onSubmit)()
+      closeDrawer()
     }
   }
 
@@ -37,5 +48,13 @@ export function useSetItem({
     form.removeListItem('data', index)
   }
 
-  return { form, addReps, removeSetItem, submit }
+  return {
+    form,
+    isDrawerOpened,
+    openDrawer,
+    closeDrawer,
+    addReps,
+    removeSetItem,
+    submit,
+  }
 }

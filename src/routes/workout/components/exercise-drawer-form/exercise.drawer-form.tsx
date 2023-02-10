@@ -1,9 +1,11 @@
-import { Button, Drawer, Flex, Select } from '@mantine/core'
+import { Button, Drawer, Select, Title } from '@mantine/core'
 import { Exercise } from '../workout-card/use-workout-card'
 import {
   exerciseOptions,
   useExeriseDrawerForm,
 } from './use-exercise-drawer-form'
+
+import styles from './exercise-drawer-form.module.css'
 
 export function ExerciseDrawerForm(props: {
   exerciseBlockId?: string
@@ -24,26 +26,41 @@ export function ExerciseDrawerForm(props: {
   return (
     <Drawer
       styles={() => ({
+        root: {
+          padding: 0,
+        },
+        header: {
+          padding: 16,
+        },
         drawer: {
           overflow: 'scroll',
         },
       })}
       opened={props.isOpened}
       onClose={props.onClose}
-      title="Add set"
+      title={<Title order={3}>Add exercise</Title>}
       position="right"
-      padding="xl"
       size="95%"
     >
-      <form onSubmit={onSubmit} style={{ overflow: 'auto' }}>
-        <Flex direction="column" gap={15}>
-          <Select
-            placeholder="Select exercise"
-            data={exerciseOptions}
-            {...form.getInputProps('name')}
-          />
-          <Button type="submit">Add exercise</Button>
-        </Flex>
+      <form onSubmit={onSubmit}>
+        <div className={styles.container}>
+          <div className={styles.content}>
+            <Select
+              style={{
+                alignSelf: 'center',
+              }}
+              placeholder="Select exercise"
+              data={exerciseOptions}
+              {...form.getInputProps('name')}
+            />
+          </div>
+
+          <div className={styles.navigation}>
+            <Button fullWidth type="submit">
+              Add exercise
+            </Button>
+          </div>
+        </div>
       </form>
     </Drawer>
   )

@@ -1,5 +1,5 @@
 import { useForm } from '@mantine/form'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Exercise } from '../workout-card/use-workout-card'
 import { formValuesToItems, itemToFormValues } from './helpers'
 
@@ -21,6 +21,16 @@ export function useSupersetItem({
   items: Exercise[]
   onSubmit: (exercises: Exercise[]) => void
 }) {
+  const [isDrawerOpened, setIsDrawerOpened] = useState(false)
+
+  function openDrawer() {
+    setIsDrawerOpened(true)
+  }
+
+  function closeDrawer() {
+    setIsDrawerOpened(false)
+  }
+
   const formattedName = useMemo(() => {
     const names = items.map((i) => i.name)
 
@@ -55,6 +65,7 @@ export function useSupersetItem({
     return () => {
       console.log('f-t-e', formValuesToItems(form.values))
       onSubmit(formValuesToItems(form.values))
+      closeDrawer()
     }
   }
 
@@ -62,5 +73,14 @@ export function useSupersetItem({
     form.removeListItem('items', index)
   }
 
-  return { formattedName, form, addReps, submit, removeFormItem }
+  return {
+    formattedName,
+    form,
+    isDrawerOpened,
+    openDrawer,
+    closeDrawer,
+    addReps,
+    submit,
+    removeFormItem,
+  }
 }
