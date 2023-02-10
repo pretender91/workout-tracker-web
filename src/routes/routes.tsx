@@ -5,6 +5,7 @@ import { RegistrationPage } from 'src/routes/registration/registration.page'
 import { SettingsPage } from 'src/routes/settings/settings.page'
 import { StatsPage } from 'src/routes/stats/stats.page'
 import ProfilePage from './edit-profile/edit-profile.page'
+import { WorkoutPage } from './workout/workout.page'
 
 export function Routes() {
   const { RouteProvider } = useRouter()
@@ -28,10 +29,13 @@ function CurrentRoute() {
       return <SettingsPage />
     case 'profile':
       return <ProfilePage />
+    case 'workout':
+      return <WorkoutPage />
     case 'login':
       return <LoginPage />
     case 'registration':
       return <RegistrationPage />
+
     default:
       return <div>404</div>
   }
